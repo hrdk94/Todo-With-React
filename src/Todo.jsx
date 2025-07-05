@@ -8,12 +8,19 @@ function Todo(){
 
 
     let AddNewTask = () => {
-        setTodos([...todos, {task: newTodo, id: uuidv4()}]);
+        setTodos((prevTodos) => {
+            return [...prevTodos, {task: newTodo, id: uuidv4()}]
+        });
         setNewTodo("");
     };
 
     let UpdateNewTodo = (event)=> {
         setNewTodo(event.target.value);
+    };
+
+    let DeleteTodo = (id) =>{
+        console.log(id, "Deleted")
+        setTodos(todos.filter((todos)=> todos.id != id))
     };
     return(
         <div>
@@ -29,7 +36,9 @@ function Todo(){
             <ul>
                 {
                     todos.map((todos)=>(
-                        <li key={todos.id}>{todos.task}</li>
+                        <li key={todos.id}>
+                            {todos.task}
+                            <button style={{margin: "8px"}} onClick={()=>DeleteTodo(todos.id)}>Delete</button></li>
                     ))
                 }
             </ul>
