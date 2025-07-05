@@ -19,15 +19,39 @@ function Todo(){
     };
 
     let DeleteTodo = (id) =>{
-        console.log(id, "Deleted")
+        console.log(id, "Deleted");
         setTodos(todos.filter((todos)=> todos.id != id))
     };
+    
+    let upperCaseALL = () =>{
+        setTodos(todos.map((todos)=>{
+            return{
+                ...todos,
+                task: todos.task.toUpperCase(),
+            }
+        }
+    ))};
+
+    const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      AddNewTask();
+    }
+  };
+
+
     return(
         <div>
 
 
-            <input style={{ marginRight: "8px"}} type="text" placeholder="Write your tasks here..."  value={newTodo} onChange={UpdateNewTodo}/>
-            <button onClick={AddNewTask}>ADD TASK</button>
+            <input
+                style={{ marginRight: "8px" }}
+                type="text"
+                placeholder="Write your tasks here..."
+                value={newTodo}
+                onChange={UpdateNewTodo}
+                onKeyDown={handleKeyDown}
+            />
+            <button onClick={AddNewTask} onKeyDown={handleKeyDown}>ADD TASK</button>
             <br /><br />
             <hr />
 
@@ -42,6 +66,8 @@ function Todo(){
                     ))
                 }
             </ul>
+            <br /> <br /> <br />
+            <button onClick={upperCaseALL}>UpperCase ALL</button>
 
         </div>
     )
