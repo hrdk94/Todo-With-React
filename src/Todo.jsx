@@ -51,6 +51,19 @@ let UpperCaseOne = (id) => {
   }));
 };
 
+let  LowerCaseOne = (id) =>{
+    setTodos(todos.map((todo) => {
+    if (todo.id === id) {
+      return {
+        ...todo,
+        task: todo.task.toLowerCase(),
+      };
+    } else {
+      return todo;
+    }
+  }));
+}
+
 
 
     return(
@@ -75,7 +88,8 @@ let UpperCaseOne = (id) => {
                         <li key={todos.id}>
                             {todos.task}
                             <button style={{margin: "8px"}} onClick={()=>DeleteTodo(todos.id)}>Delete</button>
-                            <button onClick={() => UpperCaseOne(todos.id)}>UpperCase One</button>
+                            <button style={{margin: "8px"}} onClick={() => UpperCaseOne(todos.id)}>UpperCase One</button>
+                            <button onClick={() => LowerCaseOne(todos.id)}>LowerCase One</button>
                             </li>          
                     ))
                 }
