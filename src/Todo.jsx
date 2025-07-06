@@ -23,7 +23,7 @@ function Todo(){
         setTodos(todos.filter((todos)=> todos.id != id))
     };
     
-    let upperCaseALL = () =>{
+    let UpperCaseALL = () =>{
         setTodos(todos.map((todos)=>{
             return{
                 ...todos,
@@ -38,11 +38,23 @@ function Todo(){
     }
   };
 
+let UpperCaseOne = (id) => {
+  setTodos(todos.map((todo) => {
+    if (todo.id === id) {
+      return {
+        ...todo,
+        task: todo.task.toUpperCase(),
+      };
+    } else {
+      return todo;
+    }
+  }));
+};
+
+
 
     return(
         <div>
-
-
             <input
                 style={{ marginRight: "8px" }}
                 type="text"
@@ -62,12 +74,14 @@ function Todo(){
                     todos.map((todos)=>(
                         <li key={todos.id}>
                             {todos.task}
-                            <button style={{margin: "8px"}} onClick={()=>DeleteTodo(todos.id)}>Delete</button></li>
+                            <button style={{margin: "8px"}} onClick={()=>DeleteTodo(todos.id)}>Delete</button>
+                            <button onClick={() => UpperCaseOne(todos.id)}>UpperCase One</button>
+                            </li>          
                     ))
                 }
             </ul>
             <br /> <br /> <br />
-            <button onClick={upperCaseALL}>UpperCase ALL</button>
+            <button onClick={UpperCaseALL}>UpperCase ALL</button>
 
         </div>
     )
