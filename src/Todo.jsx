@@ -32,6 +32,15 @@ function Todo(){
         }
     ))};
 
+    let lowerCaseALL = () =>{
+      setTodos(todos.map((todos)=>{
+        return{
+          ...todos,
+          task: todos.task.toLowerCase(),
+        }
+      }))
+    }
+
     const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       AddNewTask();
@@ -51,7 +60,7 @@ let UpperCaseOne = (id) => {
   }));
 };
 
-let  LowerCaseOne = (id) =>{
+let LowerCaseOne = (id) =>{
     setTodos(todos.map((todo) => {
     if (todo.id === id) {
       return {
@@ -63,7 +72,6 @@ let  LowerCaseOne = (id) =>{
     }
   }));
 }
-
 
 let TaskDone = (id) => {
   setTodos(todos.map((todo) => {
@@ -78,8 +86,6 @@ let TaskDone = (id) => {
   }));
 };
 
-
-
     return(
         <div>
             <input
@@ -93,7 +99,6 @@ let TaskDone = (id) => {
             <button onClick={AddNewTask} onKeyDown={handleKeyDown}>ADD TASK</button>
             <br /><br />
             <hr />
-
 
             <p>TODO LIST!</p>
             <ul>
@@ -110,7 +115,10 @@ let TaskDone = (id) => {
                 }
             </ul>
             <br /> <br /> <br />
+            
             <button onClick={UpperCaseALL}>UpperCase ALL</button>
+            <br /> <br /> 
+            <button onClick={lowerCaseALL}>LowerCase ALL</button>
 
         </div>
     )
